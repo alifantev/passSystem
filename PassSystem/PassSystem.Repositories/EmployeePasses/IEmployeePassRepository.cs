@@ -1,4 +1,5 @@
 ﻿using PassSystem.Domain.EmployeePasses;
+using PassSystem.Repositories.Interfaces;
 
 namespace PassSystem.Repositories.EmployeePasses
 {

@@ -1,5 +1,6 @@
 ﻿using PassSystem.Domain.EmployeePasses;
 using PassSystem.Repositories.EmployeePasses.DbContexts;
+using PassSystem.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

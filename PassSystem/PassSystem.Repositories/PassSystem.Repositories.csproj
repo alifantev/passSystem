@@ -54,7 +54,8 @@
     <Compile Include="EmployeePasses\DbContexts\EmployeeContext.cs" />
     <Compile Include="EmployeePasses\DbContexts\EmployeePassDbContext.cs" />
     <Compile Include="EmployeePasses\EmployeePassRepository.cs" />
-    <Compile Include="IEntityRepository.cs" />
+    <Compile Include="EmployeePasses\IEmployeePassRepository.cs" />
+    <Compile Include="Interfaces\IEntityRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PassSystem.Repositories
+namespace PassSystem.Repositories.Interfaces
 {
     public interface IEntityRepository<T> : IDisposable where T: class
     {

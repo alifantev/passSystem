@@ -1,11 +1,13 @@
 ﻿using PassSystem.Domain.EmployeePasses;
+using PassSystem.Repositories.EmployeePasses.DbContexts;
 using System;
 using System.Collections.Generic;
-
+using System.Data.Entity;
+using System.Linq;
 
 namespace PassSystem.Repositories.EmployeePasses
 {
-    internal class EmployeePassRepository : IEntityRepository<EmployeePass>
+    internal class EmployeePassRepository : IEmployeePassRepository
     {
         private readonly EmployeePassDbContext _db;
 
@@ -14,23 +16,6 @@ namespace PassSystem.Repositories.EmployeePasses
             _db = new EmployeePassDbContext(connectionString);
         }
         
-//        internal void Add(EmployeePass employeePass)
-//        {
-//            using (var db = new EmployeePassDbContext())
-//            {
-//                db.EmployeePasses.Add(employeePass);
-//                db.SaveChanges();
-//            }
-//        }
-//
-//        internal EmployeePass[] GetAll()
-//        {
-//            using (var db = new EmployeePassDbContext())
-//            {
-//                return db.EmployeePasses.Include(x => x.Employee).ToArray();
-//            }
-//        }
-
         public EmployeePass Get(int id)
         {
             return _db.EmployeePasses.FirstOrDefault(x => x.Id == id);
@@ -38,32 +23,36 @@ namespace PassSystem.Repositories.EmployeePasses
 
         public IEnumerable<EmployeePass> Find(Func<EmployeePass, bool> predicate)
         {
-            throw new NotImplementedException();
+            return _db.EmployeePasses.Where(predicate);
         }
 
         public IEnumerable<EmployeePass> FindPaged(int page, int countInPage, Func<EmployeePass, bool> predicate)
         {
-            throw new NotImplementedException();
+            var startAt = (page - 1) * countInPage;
+
+            return _db.EmployeePasses.Where(predicate).Skip(startAt).Take(countInPage);
         }
 
         public void Create(EmployeePass item)
         {
-            throw new NotImplementedException();
+            _db.EmployeePasses.Add(item);
         }
 
         public void Update(EmployeePass item)
         {
-            throw new NotImplementedException();
+            _db.Entry(item).State = EntityState.Modified;
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var pass = Get(id);
+            if (pass != null)
+                _db.EmployeePasses.Remove(pass);
         }
         
         IEnumerable<EmployeePass> IEntityRepository<EmployeePass>.GetAll()
         {
-            return GetAll();
+            return _db.EmployeePasses;
         }
 
         private Boolean _disposed = false;

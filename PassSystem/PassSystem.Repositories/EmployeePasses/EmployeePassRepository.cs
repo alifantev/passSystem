@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace PassSystem.Repositories.EmployeePasses
 {
-    internal class EmployeePassRepository : IEmployeePassRepository
+    public class EmployeePassRepository : IEmployeePassRepository
     {
         private readonly EmployeePassDbContext _db;
 
@@ -37,23 +37,28 @@ namespace PassSystem.Repositories.EmployeePasses
         public void Create(EmployeePass item)
         {
             _db.EmployeePasses.Add(item);
+            _db.SaveChanges();
         }
 
         public void Update(EmployeePass item)
         {
             _db.Entry(item).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var pass = Get(id);
             if (pass != null)
+            {
                 _db.EmployeePasses.Remove(pass);
+                _db.SaveChanges();
+            }
         }
         
         IEnumerable<EmployeePass> IEntityRepository<EmployeePass>.GetAll()
         {
-            return _db.EmployeePasses;
+            return _db.EmployeePasses.ToArray();
         }
 
         private Boolean _disposed = false;

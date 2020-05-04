@@ -1,6 +1,5 @@
 ﻿using System;
 using PassSystem.Contracts.DTOs.EmployeePass;
-using PassSystem.Domain.EmployeePasses;
 
 namespace PassSystem.BackOffice.Web.Models.EmployeePasses
 {

@@ -34,7 +34,7 @@
                     @if (!pass.IsAnnuled)
                     {
                         @Html.ActionLink("Редактировать", "Edit", new {id = pass.PassId}, new {@class = "btn btn-warning"})
-                        <button type="button" class="btn btn-danger" disabled="" onClick="annulatePass('@(pass.PassId)')">Aннулировать</button>
+                        <button type="button" class="btn btn-danger" onClick="annulatePass('@(pass.PassId)')">Aннулировать</button>
                     }
                     
                 </td>

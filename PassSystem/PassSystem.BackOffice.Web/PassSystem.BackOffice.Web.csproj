@@ -256,10 +256,6 @@
       <Project>{7a2d68b4-0226-4d65-84b5-9a6a0bce6304}</Project>
       <Name>PassSystem.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PassSystem.Domain\PassSystem.Domain.csproj">
-      <Project>{612c8c85-abc7-46e8-b909-dd801c8d515b}</Project>
-      <Name>PassSystem.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PassSystem.Services\PassSystem.Services.csproj">
       <Project>{38bba2e5-6440-465e-bac4-07b733a8fffe}</Project>
       <Name>PassSystem.Services</Name>

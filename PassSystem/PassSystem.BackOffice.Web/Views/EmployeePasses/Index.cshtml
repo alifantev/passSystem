@@ -6,6 +6,8 @@
     List<String> errorMessages = TempData["ErrorMessage"] != null
         ? TempData["ErrorMessage"] as List<String>
         : new List<string>();
+    
+    
 }
 
 <div className="container-fluid">
@@ -17,16 +19,16 @@
                     <hr/>
                 
                     <div class="form-row">
-                        <div class="form-group col-12 col-sm-6 col-lg-3">
+                        <div class="form-group col-12 col-sm-6 col-lg-3 mt-2">
                             <label class="font-weight-bold" for="passId">Номер сотрудника</label>
                             <input type="number" id="passId" placeholder="Введите номер"/>
                         </div>
-                        <div class="form-group col-12 col-sm-6 col-lg-3">
+                        <div class="form-group col-12 col-sm-6 col-lg-3 mt-2">
                             <label class="font-weight-bold" for="passId">Фамилия сотрудника</label>
                             <input type="text" id="employeeLastName" placeholder="Введите фамилию"/>
                         </div>
                         <div class="form-group col-12 col-sm-6 col-lg-3">
-                            <input type="button" class="btn btn-primary mb-5" value="Найти" onclick="findItems();"/>
+                            <input type="button" class="btn btn-primary mt-0" value="Найти" onclick="findItems();"/>
                         </div>
                     </div>
                 
@@ -48,25 +50,18 @@
             }
         </div>
     }
-    @if (Model.EmployeePasses.Length == 0)
-    {
-        
-        <div class="alert alert-warning" role="alert">
-            @Model.ErrorMessage
-        </div>
-    }else
-    {
-        <div class="row">
-            <div class="col-12">
-                <div className="overflow-auto max-vh-100">
-                    <div id="listOfPass">
-                        @{ Html.RenderPartial("EmployeePassesTable", Model);}
-                    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div className="overflow-auto max-vh-100">
+                <div id="listOfPass">
+                    @{ Html.RenderPartial("EmployeePassesTable", Model);}
                 </div>
             </div>
         </div>
+    </div>
         
-    }
+    
     
 </div>
 

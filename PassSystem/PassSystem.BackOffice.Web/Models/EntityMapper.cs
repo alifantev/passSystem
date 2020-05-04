@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using PassSystem.BackOffice.Web.Models.EmployeePasses;
 using PassSystem.Contracts.DTOs.EmployeePass;
-using PassSystem.Domain.EmployeePasses;
 
 namespace PassSystem.BackOffice.Web.Models
 {
@@ -10,6 +10,8 @@ namespace PassSystem.BackOffice.Web.Models
     {
         public static EmployeePassViewModel[] MapToViewModels(IEnumerable<EmployeePassDto> dtos)
         {
+            if (!dtos.Any()) return new EmployeePassViewModel[]{};
+            
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EmployeePassDto, EmployeePassViewModel>())
                 .CreateMapper();
             

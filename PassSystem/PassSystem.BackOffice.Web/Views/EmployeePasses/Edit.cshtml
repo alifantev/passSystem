@@ -1,0 +1,81 @@
+﻿@model PassSystem.BackOffice.Web.Models.EmployeePasses.EmployeePassEditModel
+@{
+    ViewBag.Title = "Редактирование";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>Изменение пропуска</h2>
+<hr/>
+
+@using (Html.BeginForm("Edit","EmployeePasses", FormMethod.Post, new {enctype="multipart/form-data"}))
+{
+    @Html.HiddenFor(x => x.PassId)
+    @Html.HiddenFor(x => x.EmployeeId)
+    <div class="form-group row">
+        @Html.LabelFor(x => x.LastName, new {@class="col-sm-2 col-form-label col-form-label-sm"})
+        <div class="col-sm-10">
+            @Html.EditorFor(x => x.LastName, new {@class="form-control form-control-sm"})
+            @Html.ValidationMessageFor(x => x.LastName)
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(x => x.FirstName, new {@class="col-sm-2 col-form-label col-form-label-sm"})
+        <div class="col-sm-10">
+            @Html.EditorFor(x => x.FirstName, new {@class="form-control form-control-sm"})
+            @Html.ValidationMessageFor(x => x.FirstName)
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(x => x.Patronymic, new {@class="col-sm-2 col-form-label col-form-label-sm"})
+        <div class="col-sm-10">
+            @Html.EditorFor(x => x.Patronymic, new {@class="form-control form-control-sm"})
+            @Html.ValidationMessageFor(x => x.Patronymic)
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(x => x.Position, new {@class="col-sm-2 col-form-label col-form-label-sm"})
+        <div class="col-sm-10">
+            @Html.EnumDropDownListFor(x => x.Position, new {@class="form-control form-control-sm"})
+            @Html.ValidationMessageFor(x => x.Position)
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        @Html.HiddenFor(x => x.PhotoPath)
+        <img src="@Model.PhotoPath" alt="" width="100" height="100"/>
+        @Html.LabelFor(x => x.PhotoPath, new {@class = "col-sm-2 col-form-label col-form-label-sm"})
+        <div class="col-sm-10">
+            @Html.TextBox("file", "", new {type = "file"})
+            @Html.ValidationMessageFor(x => x.PhotoPath)
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        @Html.LabelFor(x => x.DateOfBirthday, new {@class="col-sm-2 col-form-label col-form-label-sm"})
+        <div class="col-sm-10">
+            @Html.EditorFor(x => x.DateOfBirthday, new {@class="form-control form-control-sm"})
+            @Html.ValidationMessageFor(x => x.DateOfBirthday)
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        @Html.LabelFor(x => x.ValidAt, new {@class="col-sm-2 col-form-label col-form-label-sm"})
+        <div class="col-sm-10">
+            @Html.EditorFor(x => x.ValidAt, new {@class="form-control form-control-sm"})
+            @Html.ValidationMessageFor(x => x.ValidAt)
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        @Html.LabelFor(x => x.ValidTo, new {@class="col-sm-2 col-form-label col-form-label-sm"})
+        <div class="col-sm-10">
+            @Html.EditorFor(x => x.ValidTo, new {@class="form-control form-control-sm"})
+            @Html.ValidationMessageFor(x => x.ValidTo)
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <button type="submit" class="btn btn-success ml-3 mr-1" onclick="formSubmit();">Сохранить</button>
+        @Html.ActionLink("Отменить", "Index", null, new {@class="btn btn-danger"})
+    </div>
+}

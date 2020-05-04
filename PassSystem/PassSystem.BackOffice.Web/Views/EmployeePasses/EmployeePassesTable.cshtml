@@ -1,0 +1,50 @@
+﻿@using PassSystem.BackOffice.Web.Commons.Extensions
+@model PassSystem.BackOffice.Web.Models.EmployeePasses.EmployeePassesIndexModel
+
+<table class="table table-align-middle table-fixed-header table-bordered table-hover">
+    <tr>
+        <th>Номер пропуска</th>
+        <th>Дата рождения</th>
+        <th>ФИО</th>
+        <th>Должность</th>
+        <th>Фото</th>
+        <th></th>
+    </tr>
+    <tbody>
+
+    @{
+        foreach (var pass in Model.EmployeePasses)
+        {
+            <tr class="@(pass.IsAnnuled ? "table-warning" : "")">
+                <td>
+                    @if (!pass.IsAnnuled)
+                    {
+                        @Html.ActionLink(pass.PassId.ToString(), "Edit", new {id = pass.PassId})
+                    }
+                    else
+                    {
+                        @pass.PassId
+                    }
+                </td>
+                <td>@pass.DateOfBirthdayView</td>
+                <td>@pass.LastNameAndInitials</td>
+                <td>@pass.Position.GetDisplayName()</td>
+                <td><img alt="фото" src="@pass.PhotoPath" width="30" height="30"/></td>
+                <td text-center vertical-align-middle>
+                    @if (!pass.IsAnnuled)
+                    {
+                        @Html.ActionLink("Редактировать", "Edit", new {id = pass.PassId}, new {@class = "btn btn-warning"})
+                        <button type="button" class="btn btn-danger" disabled="" onClick="annulatePass('@(pass.PassId)')">Aннулировать</button>
+                    }
+                    
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
+@{Html.RenderPartial("Pagination", Model.Pagination);}
+
+
+

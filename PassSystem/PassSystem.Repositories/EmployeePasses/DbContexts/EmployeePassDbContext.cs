@@ -16,7 +16,6 @@ namespace PassSystem.Repositories.EmployeePasses.DbContexts
             modelBuilder.Entity<EmployeePass>()
                 .HasKey(x => x.Id)
                 .ToTable("employeePasses")
-                
                 .HasRequired(e => e.Employee);
             
             base.OnModelCreating(modelBuilder);

@@ -53,6 +53,10 @@
     <Reference Include="Autofac.Integration.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da">
       <HintPath>Bin\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -152,18 +156,46 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Commons\Extensions\EnumExtensions.cs" />
+    <Compile Include="Controllers\EmployeePassesController.cs" />
+    <Compile Include="Controllers\Employees.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfrastructureController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\IoCConfig.cs" />
+    <Compile Include="Models\EmployeePasses\EmployeePassEditModel.cs" />
+    <Compile Include="Models\EmployeePasses\EmployeePassesIndexModel.cs" />
+    <Compile Include="Models\EmployeePasses\EmployeePassViewModel.cs" />
+    <Compile Include="Models\EntityMapper.cs" />
+    <Compile Include="Models\PaginationModel.cs" />
+    <Compile Include="Models\Sidebar\LeftMenuItem.cs" />
+    <Compile Include="Models\Sidebar\LeftMenuModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome\fonts\fa-brands-400.eot" />
+    <Content Include="Content\font-awesome\fonts\fa-brands-400.svg" />
+    <Content Include="Content\font-awesome\fonts\fa-brands-400.ttf" />
+    <Content Include="Content\font-awesome\fonts\fa-brands-400.woff" />
+    <Content Include="Content\font-awesome\fonts\fa-brands-400.woff2" />
+    <Content Include="Content\font-awesome\fonts\fa-regular-400.eot" />
+    <Content Include="Content\font-awesome\fonts\fa-regular-400.svg" />
+    <Content Include="Content\font-awesome\fonts\fa-regular-400.ttf" />
+    <Content Include="Content\font-awesome\fonts\fa-regular-400.woff" />
+    <Content Include="Content\font-awesome\fonts\fa-regular-400.woff2" />
+    <Content Include="Content\font-awesome\fonts\fa-solid-900.eot" />
+    <Content Include="Content\font-awesome\fonts\fa-solid-900.svg" />
+    <Content Include="Content\font-awesome\fonts\fa-solid-900.ttf" />
+    <Content Include="Content\font-awesome\fonts\fa-solid-900.woff" />
+    <Content Include="Content\font-awesome\fonts\fa-solid-900.woff2" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\js\sidebar\sidebar.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -176,12 +208,23 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Views\EmployeePasses\Add.cshtml" />
+    <Content Include="Views\EmployeePasses\Edit.cshtml" />
+    <Content Include="Views\EmployeePasses\EmployeePassesTable.cshtml" />
+    <Content Include="Views\EmployeePasses\Index.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Infrastructure\Index.cshtml" />
+    <Content Include="Views\Shared\Pagination.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -194,11 +237,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index_old.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -207,13 +249,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PassSystem.Contracts\PassSystem.Contracts.csproj">
+      <Project>{7a2d68b4-0226-4d65-84b5-9a6a0bce6304}</Project>
+      <Name>PassSystem.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PassSystem.Domain\PassSystem.Domain.csproj">
       <Project>{612c8c85-abc7-46e8-b909-dd801c8d515b}</Project>
       <Name>PassSystem.Domain</Name>
@@ -221,6 +265,10 @@
     <ProjectReference Include="..\PassSystem.Services\PassSystem.Services.csproj">
       <Project>{38bba2e5-6440-465e-bac4-07b733a8fffe}</Project>
       <Name>PassSystem.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PassSystem.Tools\PassSystem.Tools.csproj">
+      <Project>{acae72b8-4dfa-46e9-9fb6-95ca472c1dd9}</Project>
+      <Name>PassSystem.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

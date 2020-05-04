@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+span.field-validation-error {
+    color: red;
+}

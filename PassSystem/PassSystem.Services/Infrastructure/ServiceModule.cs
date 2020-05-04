@@ -15,7 +15,7 @@ namespace PassSystem.Services.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<EmployeePassRepository>().As<IEmployeePassRepository>()
-                .WithParameter("connectionString", _connectionString);
+                .WithParameter("connectionString", _connectionString).InstancePerDependency();
         }
     }
 }

@@ -11,6 +11,5 @@ namespace PassSystem.Domain.EmployeePasses
         public EmployeePosition Position { get; set; }
         public DateTime DateOfBirthday { get; set; }
         public string PhotoPath { get; set; }
-        public Boolean IsRemoved { get; set; }
     }
 }

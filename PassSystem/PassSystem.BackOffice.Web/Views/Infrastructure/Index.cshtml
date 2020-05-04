@@ -1,0 +1,21 @@
+﻿@model PassSystem.BackOffice.Web.Models.Sidebar.LeftMenuModel
+@{
+   Layout = null;
+}
+
+<nav id="sidebar" class="active">
+    <div class="sidebar-header" id="sidebar-header">
+        <h3>@Model.Title</h3>
+    </div>
+    <ul class="list-unstyled components">
+        @foreach (var item in Model.MainItems)
+        {
+            <li class="@(item.Active ? "active" : String.Empty)">
+                <a href="@item.Url">
+                    <i class="fa-fw @item.Class"></i><span>@item.Text</span>
+                </a>
+            </li>
+        }
+    </ul>
+</nav>
+

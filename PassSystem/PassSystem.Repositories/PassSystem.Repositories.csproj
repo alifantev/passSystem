@@ -63,6 +63,10 @@
       <Project>{612c8c85-abc7-46e8-b909-dd801c8d515b}</Project>
       <Name>PassSystem.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PassSystem.Tools\PassSystem.Tools.csproj">
+      <Project>{acae72b8-4dfa-46e9-9fb6-95ca472c1dd9}</Project>
+      <Name>PassSystem.Tools</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

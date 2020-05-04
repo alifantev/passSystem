@@ -57,10 +57,15 @@
   <ItemGroup>
     <Compile Include="EmployeePass\EmployeePassService.cs" />
     <Compile Include="EmployeePass\EmployeePassValidator.cs" />
+    <Compile Include="EntityMapper.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PassSystem.Contracts\PassSystem.Contracts.csproj">
+      <Project>{7a2d68b4-0226-4d65-84b5-9a6a0bce6304}</Project>
+      <Name>PassSystem.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PassSystem.Domain\PassSystem.Domain.csproj">
       <Project>{612c8c85-abc7-46e8-b909-dd801c8d515b}</Project>
       <Name>PassSystem.Domain</Name>
@@ -68,6 +73,10 @@
     <ProjectReference Include="..\PassSystem.Repositories\PassSystem.Repositories.csproj">
       <Project>{579dce29-8ad5-4641-b3ac-a3bcdc76abb4}</Project>
       <Name>PassSystem.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PassSystem.Tools\PassSystem.Tools.csproj">
+      <Project>{acae72b8-4dfa-46e9-9fb6-95ca472c1dd9}</Project>
+      <Name>PassSystem.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

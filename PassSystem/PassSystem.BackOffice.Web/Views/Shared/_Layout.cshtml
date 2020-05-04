@@ -1,15 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пропускная система</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="@Url.Content("~/Scripts/sidebar/sidebar.js")"></script>
-    <link href="@Url.Content("~/Content/font-awesome/css/font-awesome.min.css")" rel="stylesheet" />
-
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
     
     <script>
       $( function() {
@@ -19,30 +19,24 @@
           	dayNamesMin : ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
           });
       });
-      
-      </script>
+    </script>
+    
+    <title>Пропускная система</title>
     
 </head>
 <body>
 
-    
-    
-    <script src="../../Scripts/jquery-ui.js"></script>
-
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
-<div id="wrapper">
-    @{ Html.RenderAction("Index", "Infrastructure");}
-    <div id="content">
-        <div class="container-fluid full-height">
-            @RenderBody()
+    <div id="wrapper">
+        @{ Html.RenderAction("Index", "Infrastructure");}
+        <div id="content" class="content">
+            <div class="container-fluid full-height">
+                @RenderBody()
+            </div>
         </div>
+        <div inform class="inform-animate inform-fixed inform-shadow"></div>
     </div>
-    <div inform class="inform-animate inform-fixed inform-shadow"></div>
-</div>
 
-
+    
 
 </body>
 </html>

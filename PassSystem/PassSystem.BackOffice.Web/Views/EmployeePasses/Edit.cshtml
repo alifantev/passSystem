@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = "Редактирование";
     Layout = "../Shared/_Layout.cshtml";
+    
+    List<String> errorMessages = TempData["ErrorMessage"] != null
+        ? TempData["ErrorMessage"] as List<String>
+        : new List<string>();
 }
 
 <h2>Изменение пропуска</h2>
@@ -9,6 +13,16 @@
 
 @using (Html.BeginForm("Edit","EmployeePasses", FormMethod.Post, new {enctype="multipart/form-data"}))
 {
+    if (errorMessages.Any())
+    {
+        <div class="alert alert-danger" role="alert">
+            @foreach (var error in errorMessages)
+            {
+                <p>@error</p><br/>
+            }
+        </div>
+    }
+    
     @Html.HiddenFor(x => x.PassId)
     @Html.HiddenFor(x => x.EmployeeId)
     <div class="form-group row">

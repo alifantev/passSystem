@@ -16,11 +16,11 @@ namespace PassSystem.BackOffice.Web.Controllers
         {
             return new LeftMenuModel()
             {
-                Title = "Пропускная система",
+                Title = "Пропускная система v1.0.0",
                 MainItems = new List<LeftMenuItem>()
                 {
-                    new LeftMenuItem(){Text = "Сотрудники", Class = "fas fa-address-card", Controller = "Employees", Action = "Index"},
-                    new LeftMenuItem(){Text = "Пропуска", Class = "fas fa-address-card", Controller = "EmployeePasses", Action = "Index"},
+                    new LeftMenuItem(){Text = "Сотрудники", Class = "", Controller = "EmployeePasses", Action = "Index"},
+                    new LeftMenuItem(){Text = "Пропуска", Class = "", Controller = "EmployeePasses", Action = "Index"},
                 }
             };
         }

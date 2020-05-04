@@ -17,22 +17,6 @@ namespace PassSystem.Services.EmployeePass
             _employeePassRepository = employeePassRepository;
         }
 
-        public Result<int?> Add(EmployeePassDto employeePass)
-        {
-            try
-            {
-                var domainModel = EntityMapper.MapEmployeePassToDomain(employeePass);
-                var passId = _employeePassRepository.Create(domainModel);
-                
-                return Result<int?>.Success(passId);
-            }
-            catch (Exception e)
-            {
-                //write to log error
-                return Result<int?>.Failed("Ошибка при создании нового пропуска");
-            }
-        }
-
         public IEnumerable<EmployeePassDto> GetAll()
         {
             return _employeePassRepository.GetAll().Select(x => EntityMapper.MapEmployeePassToDto(x));
@@ -68,14 +52,35 @@ namespace PassSystem.Services.EmployeePass
                 };
         }
 
+        public Result<int?> Add(EmployeePassDto employeePass)
+        {
+            try
+            {
+                var domainModel = EntityMapper.MapEmployeePassToDomain(employeePass);
+
+                var validationResult = EmployeePassValidator.Validate(domainModel);
+                if (validationResult.IsFailed) return Result<int?>.Failed(validationResult.Errors);
+                
+                var passId = _employeePassRepository.Create(domainModel);
+
+                return Result<int?>.Success(passId);
+            }
+            catch (Exception e)
+            {
+                //write to log error
+                return Result<int?>.Failed("Ошибка при создании нового пропуска");
+            }
+        }
+        
         public Result<Boolean> Update(EmployeePassDto item)
         {
             var currentPass = _employeePassRepository.Get(item.PassId);
             if (currentPass == null) return Result<bool>.Failed($"Пропуск под номером {item.PassId} не найден");
                 
-            //validation
-
             var domainModel = EntityMapper.MapEmployeePassToDomain(item);
+            var validationResult = EmployeePassValidator.Validate(domainModel);
+            if (validationResult.IsFailed) return Result<bool>.Failed(validationResult.Errors);
+            
             _employeePassRepository.Update(domainModel);
             
             return Result<bool>.Success(true);

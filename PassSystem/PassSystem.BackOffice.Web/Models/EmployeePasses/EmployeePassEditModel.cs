@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using PassSystem.Contracts.DTOs.EmployeePass;
 using PassSystem.Domain.EmployeePasses;
 
 namespace PassSystem.BackOffice.Web.Models.EmployeePasses
@@ -24,7 +25,7 @@ namespace PassSystem.BackOffice.Web.Models.EmployeePasses
         
         [Required]
         [Display(Name = "Позиция")]
-        public EmployeePosition Position { get; set; }
+        public EmployeePositionDto Position { get; set; }
         
         [Required]
         [Display(Name = "Дата рождения")]

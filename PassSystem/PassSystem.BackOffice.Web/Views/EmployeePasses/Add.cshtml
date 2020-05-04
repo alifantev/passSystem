@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "Добавление";
     Layout = "../Shared/_Layout.cshtml";
+
+    List<String> errorMessages = TempData["ErrorMessage"] != null
+        ? TempData["ErrorMessage"] as List<String>
+        : new List<string>();
 }
 
 
@@ -11,6 +15,16 @@
 
 @using (Html.BeginForm("Add","EmployeePasses", FormMethod.Post, new {enctype="multipart/form-data"}))
 {
+    if (errorMessages.Any())
+    {
+        <div class="alert alert-danger" role="alert">
+            @foreach (var error in errorMessages)
+            {
+                <p>@error</p><br/>
+            }
+        </div>
+    }
+    
     <div class="form-group row">
         @Html.LabelFor(x => x.LastName, new {@class="col-sm-2 col-form-label col-form-label-sm"})
         <div class="col-sm-10">

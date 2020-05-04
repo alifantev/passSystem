@@ -158,7 +158,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Commons\Extensions\EnumExtensions.cs" />
     <Compile Include="Controllers\EmployeePassesController.cs" />
-    <Compile Include="Controllers\Employees.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfrastructureController.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,7 +217,6 @@
     <Content Include="Views\EmployeePasses\Edit.cshtml" />
     <Content Include="Views\EmployeePasses\EmployeePassesTable.cshtml" />
     <Content Include="Views\EmployeePasses\Index.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Infrastructure\Index.cshtml" />
     <Content Include="Views\Shared\Pagination.cshtml" />

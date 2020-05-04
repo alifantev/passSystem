@@ -30,7 +30,7 @@
                 <td>@pass.LastNameAndInitials</td>
                 <td>@pass.Position.GetDisplayName()</td>
                 <td><img alt="фото" src="@pass.PhotoPath" width="30" height="30"/></td>
-                <td text-center vertical-align-middle>
+                <td width="20%">
                     @if (!pass.IsAnnuled)
                     {
                         @Html.ActionLink("Редактировать", "Edit", new {id = pass.PassId}, new {@class = "btn btn-warning"})

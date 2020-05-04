@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using PassSystem.BackOffice.Web.Models;
 using PassSystem.BackOffice.Web.Models.EmployeePasses;
+using PassSystem.Contracts.DTOs.EmployeePass;
 using PassSystem.Contracts.Services;
 using PassSystem.Tools;
 
@@ -156,6 +157,29 @@ namespace PassSystem.BackOffice.Web.Controllers
             if (result.IsFailed) return Json(result);
 
             return Json(new {Message = $"Пропуск №{passId} аннулирован"});
+        }
+
+        public ActionResult GeneratePass(int count = 1)
+        {
+            for (int i = 1; i <= count; i++)
+            {
+                var pass = new EmployeePassDto()
+                {
+                    LastName = $"Иванов_{i}",
+                    FirstName = $"Иван_{i}",
+                    Patronymic = $"Иванович_{i}",
+                    Position = (EmployeePositionDto) new Random().Next(1,5),
+                    PhotoPath = @"/Uploads/Images/4f985267-7170-4ea8-97f8-215d87a5e30d.jpg",
+                    DateOfBirthday = DateTime.Now.AddYears(-new Random().Next(30)).Date,
+                    ValidAt = DateTime.Now.AddDays(-new Random().Next(30)).Date,
+                    ValidTo = DateTime.Now.AddDays(new Random().Next(30)).Date,
+                    IsAnnuled = false
+                };
+
+                _employeePassService.Add(pass);
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

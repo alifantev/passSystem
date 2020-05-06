@@ -13,6 +13,7 @@ namespace PassSystem.Services
                 ValidAt = dto.ValidAt,
                 ValidTo = dto.ValidTo,
                 IsAnnuled = dto.IsAnnuled,
+                AnnuledDateTime = dto.AnnuledDateTime,
                 Employee = new Employee()
                 {
                     Id = dto.EmployeeId,
@@ -34,6 +35,7 @@ namespace PassSystem.Services
                 ValidAt = model.ValidAt,
                 ValidTo = model.ValidTo,
                 IsAnnuled = model.IsAnnuled,
+                AnnuledDateTime = model.AnnuledDateTime,
                 
                 EmployeeId = model.Employee.Id,
                 LastName = model.Employee.LastName,

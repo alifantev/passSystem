@@ -152,6 +152,7 @@ namespace PassSystem.BackOffice.Web.Controllers
             }
 
             dto.IsAnnuled = true;
+            dto.AnnuledDateTime = DateTime.Now;
 
             var result = _employeePassService.Update(dto);
             if (result.IsFailed) return Json(result);

@@ -19,7 +19,7 @@ namespace PassSystem.BackOffice.Web.Controllers
                 Title = "Пропускная система v1.0.0",
                 MainItems = new List<LeftMenuItem>()
                 {
-                    new LeftMenuItem(){Text = "Сотрудники", Class = "", Controller = "EmployeePasses", Action = "Index"},
+                    //new LeftMenuItem(){Text = "Сотрудники", Class = "", Controller = "EmployeePasses", Action = "Index"},
                     new LeftMenuItem(){Text = "Пропуска", Class = "", Controller = "EmployeePasses", Action = "Index"},
                 }
             };

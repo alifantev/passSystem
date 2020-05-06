@@ -9,5 +9,6 @@ namespace PassSystem.Domain.EmployeePasses
         public DateTime ValidAt { get; set; }
         public DateTime ValidTo { get; set; }
         public Boolean IsAnnuled { get; set; }
+        public DateTime? AnnuledDateTime { get; set; }
     }
 }
